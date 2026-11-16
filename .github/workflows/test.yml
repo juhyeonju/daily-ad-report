@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read   # 워크플로 토큰은 읽기 전용
+
 jobs:
   pytest:
     runs-on: ubuntu-latest
