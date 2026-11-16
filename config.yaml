@@ -1,0 +1,53 @@
+# ─────────────────────────────────────────────
+# 광고 성과 일일 리포트 설정 파일
+# 코드를 고치지 않고 이 파일만 바꿔서 동작을 조정할 수 있습니다.
+# ─────────────────────────────────────────────
+
+timezone: Asia/Seoul
+
+# 수집할 매체. 빼고 싶은 매체는 enabled: false
+media:
+  meta:   { enabled: true }
+  google: { enabled: true }
+  tiktok: { enabled: true }
+
+# 통화 변환 (실서비스라면 일별 환율 테이블로 교체)
+fx:
+  USD_KRW: 1400
+
+# 이상 탐지 임계값
+alerts:
+  ctr_drop:
+    ratio: 0.70            # 전일 CTR < 최근 7일 평균 × 0.70 이면 경보
+    severity: warn
+  overspend:
+    ratio: 1.20            # 전일 소진액 > 일예산 × 1.20 이면 경보
+    severity: critical
+  cpa_spike:
+    ratio: 1.50            # 전일 CPA > 최근 7일 평균 × 1.50 이면 경보
+    severity: warn
+  missing_data:
+    severity: critical     # 활성 캠페인인데 전일 데이터가 없으면 경보
+  baseline_days: 7         # "최근 N일 평균"의 N
+  min_baseline_days: 3     # 비교 기준일이 이보다 적으면 ctr_drop / cpa_spike 판정 생략
+
+# 일일 실행 시 최근 며칠 중 비어 있는 날짜를 자동으로 채울지
+catch_up_days: 7
+
+# LLM 요약
+llm:
+  enabled: true
+  # DeepSeek (OpenAI 호환 API). 가장 싼 경량 모델 deepseek-flash 사용
+  base_url: https://api.deepseek.com
+  api_key_env: DEEPSEEK_API_KEY   # API 키를 읽을 환경변수 이름
+  model: deepseek-flash
+  thinking: false          # 정해진 문자열을 옮겨 쓰는 작업이라 추론 모드 불필요 (켜면 느리고 비쌈)
+  temperature: 0.2
+  max_tokens: 2000
+  timeout_seconds: 60
+  max_attempts: 2          # 검증 실패 시 1회 재생성 → 그래도 실패하면 템플릿 리포트
+
+# 발송
+notify:
+  slack: true
+  email_fallback: true

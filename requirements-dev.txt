@@ -1,0 +1,3 @@
+-r requirements.txt
+pytest>=8.0
+pgserver>=0.1.4   # 로컬 개발·테스트용 내장 PostgreSQL (DATABASE_URL이 없을 때만 사용)
