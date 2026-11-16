@@ -4,7 +4,7 @@
 
 수치는 모두 SQL로 계산하며, LLM(DeepSeek `deepseek-flash`)은 문장 작성만 담당합니다. LLM이 작성한 요약은 발송 전 수치 검증을 거칩니다.
 
-<img width="1036" height="724" alt="Slack 발송 예시" src="https://github.com/user-attachments/assets/e91d7724-3b76-4780-bd33-4dfbfc1660d6" />
+<img width="1036" height="724" alt="Slack 발송 예시" src="docs/slack-example.png" />
 
 ## 1. 구성
 
