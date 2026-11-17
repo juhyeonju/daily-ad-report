@@ -2,7 +2,7 @@ name: daily-ad-report
 
 on:
   schedule:
-    - cron: "0 23 * * *"     # 매일 08:00 KST (UTC 23:00). GitHub 사정으로 수 분~수십 분 늦을 수 있음
+    - cron: "50 22 * * *"    # 매일 07:50 KST (UTC 22:50). 정각은 GitHub 부하로 지연·누락이 잦아 피함
   workflow_dispatch:          # Actions 탭에서 수동 실행
     inputs:
       date:
