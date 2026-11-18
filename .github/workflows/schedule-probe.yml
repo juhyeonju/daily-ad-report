@@ -1,0 +1,16 @@
+name: schedule-probe
+
+# 임시: 이 저장소에서 예약 실행이 동작하는지 확인용. 발송·DB 접근 없음. 확인 후 삭제.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - run: date -u
